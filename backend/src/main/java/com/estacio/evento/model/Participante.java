@@ -1,5 +1,7 @@
 package com.estacio.evento.model;
 
+import com.estacio.evento.model.enums.ParticipanteStatus;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -29,6 +31,8 @@ public class Participante implements Serializable {
 
     @Column(nullable = false, length = 15)
     private Integer matricula;
+
+    private Integer participanteStatus;
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
@@ -95,6 +99,16 @@ public class Participante implements Serializable {
 
     public Set<Atividade> getAtividades() {
         return atividades;
+    }
+
+    public ParticipanteStatus getParticipanteStatus() {
+        return ParticipanteStatus.valueOf(participanteStatus);
+    }
+
+    public void setParticipanteStatus(ParticipanteStatus participanteStatus) {
+        if (participanteStatus != null) {
+            this.participanteStatus = participanteStatus.getCode();
+        }
     }
 
     @Override
