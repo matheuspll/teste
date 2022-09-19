@@ -61,6 +61,14 @@ public class Atividade implements Serializable {
         this.descricao = descricao;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public Set<Participante> getParticipantes() {
         return participantes;
     }
