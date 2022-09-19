@@ -1,6 +1,7 @@
 package com.estacio.evento.model;
 
 import com.estacio.evento.model.enums.ParticipanteStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -38,6 +39,7 @@ public class Participante implements Serializable {
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "participantes")
     private Set<Atividade> atividades = new HashSet<>();
 
