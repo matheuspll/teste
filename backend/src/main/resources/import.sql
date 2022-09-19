@@ -12,6 +12,7 @@ INSERT INTO tb_categoria (nome) VALUES ('Oficina');
 INSERT INTO tb_categoria (nome) VALUES ('Seminario');
 INSERT INTO tb_organizador (nome) VALUES ('Cleuton');
 INSERT INTO tb_organizador (nome) VALUES ('Priscila');
+INSERT INTO tb_organizador (nome) VALUES ('Breno')
 INSERT INTO tb_atividade (titulo, descricao, categoria_id) VALUES ('Inteligência Artificial', 'Estudo sobre como aplicar os comportamentos humanos em maquinas', 1L);
 INSERT INTO tb_atividade (titulo, descricao, categoria_id) VALUES ('Programação Funcional', 'Estudo sobre funções e imutabilidade', 1L);
 INSERT INTO tb_atividade (titulo, descricao, categoria_id) VALUES ('Python para WEB', 'Como construir aplicações utilizando Django', 2L);
@@ -27,5 +28,11 @@ INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (1L
 INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (4L, 1L);
 INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (2L, 2L);
 INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (3L, 3L);
-
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (1L, 1L);
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (1L, 2L);
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (2L, 3L);
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (3L, 3L);
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (4L, 1L);
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (4L, 2L);
+INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (4L, 3L);
 

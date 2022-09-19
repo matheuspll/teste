@@ -1,0 +1,6 @@
+--- TODOS OS PARTICIPANTES E ORIENTADOR ---
+SELECT  o.nome AS nome_organizador, p.nome AS nome_participante, a.titulo FROM TB_ATIVIDADE_ORGANIZADOR ao
+INNER JOIN TB_ORGANIZADOR o ON o.id = ao.organizador_id
+INNER JOIN TB_ATIVIDADE a ON a.id = ao.atividade_id
+INNER JOIN TB_ATIVIDADE_PARTICIPANTE ap ON ap.atividade_id = a.id
+INNER JOIN TB_PARTICIPANTE p ON p.id = ap.participante_id;

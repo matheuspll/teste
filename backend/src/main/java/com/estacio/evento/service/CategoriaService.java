@@ -24,8 +24,8 @@ public class CategoriaService {
     }
 
     @Transactional
-    public Categoria save(Categoria curso) {
-        return categoriaRepository.save(curso);
+    public Categoria save(Categoria categoria) {
+        return categoriaRepository.save(categoria);
     }
 
 }

@@ -1,7 +1,11 @@
 package com.estacio.evento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_ORGANIZADOR")
@@ -30,4 +34,8 @@ public class Organizador implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "organizadores")
+    private Set<Atividade> atividades = new HashSet<>();
 }
