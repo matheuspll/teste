@@ -1,10 +1,12 @@
 package com.estacio.evento.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Builder
 @Entity
 @Table(name = "TB_USUARIO")
 public class Usuario implements Serializable {
