@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -33,7 +34,18 @@ public class UsuarioRepositoryTest {
 
         // verificação
         Assertions.assertThat(result).isTrue();
+    }
 
+    @Test
+    public void deveRetornarFalsoQuandoNaoHouverUsuarioCadastradoComOEmail() {
+        // cenário
+        usuarioRepository.deleteAll();
+
+        // ação
+        boolean result = usuarioRepository.existsByEmail("usuario@email.com");
+
+        // verificação
+        Assertions.assertThat(result).isFalse();
     }
 
     public static Usuario criarUsuario() {

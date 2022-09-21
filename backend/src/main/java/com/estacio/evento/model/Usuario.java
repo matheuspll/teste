@@ -1,14 +1,18 @@
 package com.estacio.evento.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Builder
 @Entity
 @Table(name = "TB_USUARIO")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
