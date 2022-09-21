@@ -46,7 +46,7 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    public void deveLancarErroAoValidarEmailQuandoExistirEmailCadastrado() {
+    public void TestdeveLancarErroAoValidarEmailQuandoExistirEmailCadastrado() {
         Assertions.assertThrows(RegraNegocioException.class, () -> {
             // cenario
             Usuario usuario = Usuario.builder()
