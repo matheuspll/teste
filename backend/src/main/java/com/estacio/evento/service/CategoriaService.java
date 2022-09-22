@@ -28,4 +28,8 @@ public class CategoriaService {
         return categoriaRepository.save(categoria);
     }
 
+    public boolean existsByNome(String nome) {
+        return categoriaRepository.existsByNome(nome);
+    }
+
 }

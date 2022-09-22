@@ -2,7 +2,6 @@ package com.estacio.evento.controller;
 
 import com.estacio.evento.dto.UsuarioDTO;
 import com.estacio.evento.exception.RegraNegocioException;
-import com.estacio.evento.model.Usuario;
 import com.estacio.evento.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +31,4 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
-
-
 }
