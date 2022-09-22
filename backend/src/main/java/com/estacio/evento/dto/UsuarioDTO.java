@@ -1,15 +1,18 @@
 package com.estacio.evento.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
-@Builder
 public class UsuarioDTO {
 
-    private String nome;
-    private String email;
-    private String senha;
+    @NotBlank
+    private String name;
+    @NotBlank
+    private String emailUser;
+    @NotBlank
+    private String pass;
 }

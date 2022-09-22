@@ -1,7 +1,9 @@
 package com.estacio.evento.service.impl;
 
+import com.estacio.evento.dto.UsuarioDTO;
 import com.estacio.evento.exception.ErroAutenticacao;
 import com.estacio.evento.exception.RegraNegocioException;
+import com.estacio.evento.mapper.UsuarioMapper;
 import com.estacio.evento.model.Usuario;
 import com.estacio.evento.repository.UsuarioRepository;
 import com.estacio.evento.service.UsuarioService;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +19,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    UsuarioMapper usuarioMapper;
 
     @Override
     public Usuario autenticar(String email, String senha) {
@@ -34,8 +40,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public Usuario salvarUsuario(Usuario usuario) {
+    public Usuario salvarUsuario(UsuarioDTO usuarioDTO) {
         // garantindo que não existe um outro usuário já cadastrado
+        Usuario usuario = usuarioMapper.usuarioDTOParaUsuario(usuarioDTO);
         validarEmail(usuario.getEmail());
         return usuarioRepository.save(usuario);
     }
@@ -46,5 +53,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (existe) {
             throw new RegraNegocioException("Já existe um usuário cadastrado com este email");
         }
+    }
+
+    public List<UsuarioDTO> findAll() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        return usuarioMapper.paraUsuariosDTO(usuarios);
     }
 }
