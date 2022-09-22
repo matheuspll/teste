@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     UsuarioMapper usuarioMapper;
 
     @Override
-    public Usuario autenticar(String email, String senha) {
+    public boolean autenticar(String email, String senha) {
 
         Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
         if (!usuario.isPresent()) {
@@ -35,7 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new ErroAutenticacao("Senha inválida.");
         }
 
-        return usuario.get();
+        return true;
     }
 
     @Override

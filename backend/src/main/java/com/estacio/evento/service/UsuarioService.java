@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UsuarioService {
 
-    Usuario autenticar(String email, String senha);
+    boolean autenticar(String email, String senha);
 
     Usuario salvarUsuario(UsuarioDTO usuarioDTO);
 
