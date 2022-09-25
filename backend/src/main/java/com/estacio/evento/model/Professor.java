@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "TB_ORGANIZADOR")
-public class Organizador implements Serializable {
+@Table(name = "TB_PROFESSOR")
+public class Professor implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -18,6 +18,10 @@ public class Organizador implements Serializable {
 
     @Column(nullable = false, length = 100)
     private String nome;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "professores")
+    private Set<Atividade> atividades = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -34,8 +38,4 @@ public class Organizador implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "organizadores")
-    private Set<Atividade> atividades = new HashSet<>();
 }

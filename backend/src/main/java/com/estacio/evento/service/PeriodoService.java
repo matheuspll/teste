@@ -1,8 +1,6 @@
 package com.estacio.evento.service;
 
-import com.estacio.evento.model.Participante;
 import com.estacio.evento.model.Periodo;
-import com.estacio.evento.repository.ParticipanteRepository;
 import com.estacio.evento.repository.PeriodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

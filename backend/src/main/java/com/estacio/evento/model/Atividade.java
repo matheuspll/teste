@@ -26,16 +26,16 @@ public class Atividade implements Serializable {
     private Categoria categoria;
 
     @ManyToMany
-    @JoinTable(name = "tb_atividade_participante",
+    @JoinTable(name = "tb_atividade_aluno",
             joinColumns = @JoinColumn(name = "atividade_id"),
-            inverseJoinColumns = @JoinColumn(name = "participante_id"))
-    private Set<Participante> participantes = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "aluno_id"))
+    private Set<Aluno> alunos = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "tb_atividade_organizador",
+    @JoinTable(name = "tb_atividade_professor",
             joinColumns = @JoinColumn(name = "atividade_id"),
-            inverseJoinColumns = @JoinColumn(name = "organizador_id"))
-    private Set<Organizador> organizadores = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "professor_id"))
+    private Set<Professor> professores = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -69,12 +69,12 @@ public class Atividade implements Serializable {
         this.categoria = categoria;
     }
 
-    public Set<Participante> getParticipantes() {
-        return participantes;
+    public Set<Aluno> getAlunos() {
+        return alunos;
     }
 
-    public Set<Organizador> getOrganizadores() {
-        return organizadores;
+    public Set<Professor> getProfessores() {
+        return professores;
     }
 
     @Override

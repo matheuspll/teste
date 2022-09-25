@@ -10,8 +10,6 @@ import javax.validation.constraints.NotBlank;
 public class UsuarioDTO {
 
     @NotBlank
-    private String name;
-    @NotBlank
     private String emailUser;
     @NotBlank
     private String pass;
