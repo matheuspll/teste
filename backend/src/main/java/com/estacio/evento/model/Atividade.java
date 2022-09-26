@@ -1,5 +1,7 @@
 package com.estacio.evento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,11 +27,8 @@ public class Atividade implements Serializable {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToMany
-    @JoinTable(name = "tb_atividade_participante",
-            joinColumns = @JoinColumn(name = "atividade_id"),
-            inverseJoinColumns = @JoinColumn(name = "participante_id"))
-    private Set<Participante> participantes = new HashSet<>();
+    @ManyToMany(mappedBy = "atividades")
+    final Set<Participante> participantes = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "tb_atividade_organizador",

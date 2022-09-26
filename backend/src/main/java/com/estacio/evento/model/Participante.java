@@ -40,8 +40,15 @@ public class Participante implements Serializable {
     private Curso curso;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "participantes")
+    @ManyToMany
+    @JoinTable(name = "tb_atividade_participante",
+            joinColumns = @JoinColumn(name = "participante_id"),
+            inverseJoinColumns = @JoinColumn(name = "atividade_id"))
     private Set<Atividade> atividades = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -111,6 +118,14 @@ public class Participante implements Serializable {
         if (participanteStatus != null) {
             this.participanteStatus = participanteStatus.getCode();
         }
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

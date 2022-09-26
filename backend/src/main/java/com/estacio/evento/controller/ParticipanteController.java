@@ -5,10 +5,7 @@ import com.estacio.evento.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +30,21 @@ public class ParticipanteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Participante não foi encontrado");
         }
         return ResponseEntity.status(HttpStatus.OK).body(participanteOptional.get());
+    }
+
+    @PostMapping
+    public ResponseEntity<Object> save(@RequestBody Participante participante) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(participanteService.save(participante));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteParticipante(@PathVariable(value = "id") Long id) {
+        Optional<Participante> participanteOptional = participanteService.findById(id);
+        if (!participanteOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Participante não foi enconrtado");
+        }
+        participanteService.delete(participanteOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Participante deletado com sucesso!");
     }
 
 }

@@ -15,6 +15,9 @@ public class ParticipanteService {
     @Autowired
     private ParticipanteRepository participanteRepository;
 
+    @Autowired
+    private CursoService cursoService;
+
     public List<Participante> findAll() {
         return participanteRepository.findAll();
     }
@@ -25,7 +28,13 @@ public class ParticipanteService {
 
     @Transactional
     public Participante save(Participante participante) {
+        cursoService.save(participante.getCurso());
         return participanteRepository.save(participante);
+    }
+
+    @Transactional
+    public void delete(Participante participante) {
+        participanteRepository.delete(participante);
     }
 
 }
