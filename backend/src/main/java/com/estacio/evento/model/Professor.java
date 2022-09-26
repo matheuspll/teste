@@ -23,6 +23,10 @@ public class Professor implements Serializable {
     @ManyToMany(mappedBy = "professores")
     private Set<Atividade> atividades = new HashSet<>();
 
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+//    private Usuario usuario;
+
     public Long getId() {
         return id;
     }
@@ -38,4 +42,16 @@ public class Professor implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Set<Atividade> getAtividades() {
+        return atividades;
+    }
+
+//    public Usuario getUsuario() {
+//        return usuario;
+//    }
+//
+//    public void setUsuario(Usuario usuario) {
+//        this.usuario = usuario;
+//    }
 }

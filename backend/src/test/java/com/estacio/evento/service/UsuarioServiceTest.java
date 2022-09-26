@@ -50,7 +50,6 @@ public class UsuarioServiceTest {
         Assertions.assertThrows(RegraNegocioException.class, () -> {
             // cenario
             Usuario usuario = Usuario.builder()
-                    .nome("usuario")
                     .email("email@email.com")
                     .senha("123")
                     .build();

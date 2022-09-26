@@ -28,6 +28,14 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String senha;
 
+    //    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "usuario")
+    private Aluno aluno;
+//
+//    @OneToOne(mappedBy = "usuario")
+//    private Professor professor;
+
+
     public Long getId() {
         return id;
     }
@@ -50,5 +58,13 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 }

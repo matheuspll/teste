@@ -46,6 +46,9 @@ public class Aluno implements Participante, Serializable {
     @ManyToMany(mappedBy = "alunos")
     private Set<Atividade> atividades = new HashSet<>();
 
+    @OneToOne
+    private Usuario usuario;
+
     public Long getId() {
         return id;
     }
@@ -128,6 +131,13 @@ public class Aluno implements Participante, Serializable {
         }
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     @Override
     public boolean equals(Object o) {
