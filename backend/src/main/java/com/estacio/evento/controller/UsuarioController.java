@@ -3,6 +3,7 @@ package com.estacio.evento.controller;
 import com.estacio.evento.dto.UsuarioDTO;
 import com.estacio.evento.exception.ErroAutenticacao;
 import com.estacio.evento.exception.RegraNegocioException;
+import com.estacio.evento.model.Usuario;
 import com.estacio.evento.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +35,19 @@ public class UsuarioController {
         }
     }
 
+    @PostMapping("/salvar")
+    public ResponseEntity<Object> saveUsuario(@RequestBody Usuario usuario) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
     @PostMapping("/autenticar")
     public ResponseEntity<String> autenticar(@RequestBody @Valid UsuarioDTO usuarioDTO) {
         try {
-            if (usuarioService.autenticar(usuarioDTO.getEmailUser(), usuarioDTO.getPass())) {
+            if (usuarioService.autenticar(usuarioDTO.getEmailu(), usuarioDTO.getPass())) {
                 return ResponseEntity.status(HttpStatus.OK).body("Autenticado com sucesso!");
             }
         } catch (ErroAutenticacao e) {

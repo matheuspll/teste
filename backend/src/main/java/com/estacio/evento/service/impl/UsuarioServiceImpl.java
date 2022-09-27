@@ -47,6 +47,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
+    public Usuario save(Usuario usuario) {
+        validarEmail(usuario.getEmail());
+        return usuarioRepository.save(usuario);
+    }
+
     @Override
     public void validarEmail(String email) {
         boolean existe = usuarioRepository.existsByEmail(email);

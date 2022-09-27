@@ -18,6 +18,9 @@ public class ParticipanteService {
     @Autowired
     private CursoService cursoService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     public List<Participante> findAll() {
         return participanteRepository.findAll();
     }
@@ -29,6 +32,7 @@ public class ParticipanteService {
     @Transactional
     public Participante save(Participante participante) {
         cursoService.save(participante.getCurso());
+        usuarioService.validarEmail(participante.getUsuario().getEmail());
         return participanteRepository.save(participante);
     }
 

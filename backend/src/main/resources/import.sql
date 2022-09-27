@@ -2,11 +2,16 @@ INSERT INTO tb_curso (nome) VALUES ('Sistemas de Informação');
 INSERT INTO tb_curso (nome) VALUES ('Direito');
 INSERT INTO tb_curso (nome) VALUES ('Administração');
 INSERT INTO tb_curso (nome) VALUES ('Medicina');
-INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id) VALUES ('Matheus Magalhães', '020.666.666-66', 'matheus.magalha95@gmail.com', '201933322', '999486205', 1, 1L);
-INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id) VALUES ('Diogo Cordeiro', '020.333.555-66', 'diogo@gmail.com', '201944444', '999486205', 1, 1L);
-INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id) VALUES ('Luiza Silva', '044.553.555-66', 'luiza@gmail.com', '201230203', '999486205', 1, 2L);
-INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id) VALUES ('Clarissa Silva', '055.323.555-66', 'clarissa@gmail.com', '201230203', '999486205', 1, 2L);
-INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id) VALUES ('Nelio Alves', '111.222.555-66', 'nelio@gmail.com', '201230203', '999486205', 2, 4L);
+INSERT INTO tb_endereco (rua) VALUES ('Capitao Ciriaco');
+INSERT INTO tb_endereco (rua) VALUES ('Sobral');
+INSERT INTO tb_endereco (rua) VALUES ('Rua da sobral');
+INSERT INTO tb_endereco (rua) VALUES ('Manoel Julião')
+INSERT INTO tb_endereco (rua) VALUES ('Cohabb')
+INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id, endereco_id) VALUES ('Matheus Magalhães', '020.666.666-66', 'matheus.magalha95@gmail.com', '201933322', '999486205', 1, 1L, 1L);
+INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id, endereco_id) VALUES ('Diogo Cordeiro', '020.333.555-66', 'diogo@gmail.com', '201944444', '999486205', 1, 1L, 2L);
+INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id, endereco_id) VALUES ('Luiza Silva', '044.553.555-66', 'luiza@gmail.com', '201230203', '999486205', 1, 2L, 3L);
+INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id, endereco_id) VALUES ('Clarissa Silva', '055.323.555-66', 'clarissa@gmail.com', '201230203', '999486205', 1, 2L, 4L);
+INSERT INTO tb_participante (nome, cpf, email, matricula, telefone, participante_status, curso_id, endereco_id) VALUES ('Nelio Alves', '111.222.555-66', 'nelio@gmail.com', '201230203', '999486205', 2, 4L, 5L);
 INSERT INTO tb_categoria (nome) VALUES ('Palestra');
 INSERT INTO tb_categoria (nome) VALUES ('Oficina');
 INSERT INTO tb_categoria (nome) VALUES ('Seminario');

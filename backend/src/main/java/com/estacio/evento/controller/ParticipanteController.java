@@ -1,5 +1,6 @@
 package com.estacio.evento.controller;
 
+import com.estacio.evento.exception.RegraNegocioException;
 import com.estacio.evento.model.Participante;
 import com.estacio.evento.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,11 @@ public class ParticipanteController {
 
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody Participante participante) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(participanteService.save(participante));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(participanteService.save(participante));
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

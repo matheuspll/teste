@@ -11,8 +11,9 @@ public interface UsuarioService {
 
     Usuario salvarUsuario(UsuarioDTO usuarioDTO);
 
+    Usuario save(Usuario usuario);
+
     void validarEmail(String email);
 
     List<UsuarioDTO> findAll();
-
 }

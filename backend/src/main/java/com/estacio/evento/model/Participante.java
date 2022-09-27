@@ -50,6 +50,10 @@ public class Participante implements Serializable {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private Endereco endereco;
+
     public Long getId() {
         return id;
     }
@@ -118,6 +122,14 @@ public class Participante implements Serializable {
         if (participanteStatus != null) {
             this.participanteStatus = participanteStatus.getCode();
         }
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public Usuario getUsuario() {
