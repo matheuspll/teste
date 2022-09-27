@@ -33,7 +33,8 @@ public class Participante implements Serializable {
     @Column(nullable = false, length = 15)
     private Integer matricula;
 
-    private Integer participanteStatus;
+    @Enumerated(EnumType.ORDINAL)
+    private ParticipanteStatus participanteStatus;
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
@@ -115,14 +116,22 @@ public class Participante implements Serializable {
     }
 
     public ParticipanteStatus getParticipanteStatus() {
-        return ParticipanteStatus.valueOf(participanteStatus);
+        return participanteStatus;
     }
 
     public void setParticipanteStatus(ParticipanteStatus participanteStatus) {
-        if (participanteStatus != null) {
-            this.participanteStatus = participanteStatus.getCode();
-        }
+        this.participanteStatus = participanteStatus;
     }
+
+    //    public ParticipanteStatus getParticipanteStatus() {
+//        return ParticipanteStatus.valueOf(participanteStatus);
+//    }
+
+//    public void setParticipanteStatus(ParticipanteStatus participanteStatus) {
+//        if (participanteStatus != null) {
+//            this.participanteStatus = participanteStatus.getCode();
+//        }
+//    }
 
     public Endereco getEndereco() {
         return endereco;
