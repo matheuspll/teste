@@ -19,6 +19,13 @@ public class Organizador implements Serializable {
     @Column(nullable = false, length = 100)
     private String nome;
 
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "tb_atividade_organizador",
+            joinColumns = @JoinColumn(name = "organizador_id"),
+            inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+    private Set<Atividade> atividades = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -34,8 +41,4 @@ public class Organizador implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "organizadores")
-    private Set<Atividade> atividades = new HashSet<>();
 }

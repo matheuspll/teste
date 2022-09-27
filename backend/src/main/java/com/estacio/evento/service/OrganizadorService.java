@@ -27,4 +27,9 @@ public class OrganizadorService {
     public Organizador save(Organizador organizador) {
         return organizadorRepository.save(organizador);
     }
+
+    @Transactional
+    public void delete(Organizador organizador) {
+        organizadorRepository.delete(organizador);
+    }
 }

@@ -29,4 +29,8 @@ public class PeriodoService {
     public Periodo save(Periodo periodo) {
         return periodoRepository.save(periodo);
     }
+
+    public void delete(Periodo periodo) {
+        periodoRepository.delete(periodo);
+    }
 }
