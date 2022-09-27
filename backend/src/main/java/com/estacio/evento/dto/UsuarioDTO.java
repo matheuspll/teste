@@ -12,7 +12,7 @@ public class UsuarioDTO {
     @NotBlank
     private String name;
     @NotBlank
-    private String emailu;
+    private String emailUser;
     @NotBlank
     private String pass;
 }

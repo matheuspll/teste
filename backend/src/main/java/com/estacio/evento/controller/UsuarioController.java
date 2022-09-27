@@ -47,7 +47,7 @@ public class UsuarioController {
     @PostMapping("/autenticar")
     public ResponseEntity<String> autenticar(@RequestBody @Valid UsuarioDTO usuarioDTO) {
         try {
-            if (usuarioService.autenticar(usuarioDTO.getEmailu(), usuarioDTO.getPass())) {
+            if (usuarioService.autenticar(usuarioDTO.getEmailUser(), usuarioDTO.getPass())) {
                 return ResponseEntity.status(HttpStatus.OK).body("Autenticado com sucesso!");
             }
         } catch (ErroAutenticacao e) {

@@ -2,6 +2,7 @@ package com.estacio.evento.controller;
 
 import com.estacio.evento.exception.RegraNegocioException;
 import com.estacio.evento.model.Participante;
+import com.estacio.evento.model.Usuario;
 import com.estacio.evento.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -11,13 +11,13 @@ import java.util.List;
 public interface UsuarioMapper {
 
     @Mapping(source = "name", target = "nome")
-    @Mapping(source = "emailu", target = "email")
+    @Mapping(source = "emailUser", target = "email")
     @Mapping(source = "pass", target = "senha")
 
     Usuario usuarioDTOParaUsuario(UsuarioDTO usuarioDTO);
 
     @Mapping(source = "nome", target = "name")
-    @Mapping(source = "email", target = "emailu")
+    @Mapping(source = "email", target = "emailUser")
     @Mapping(source = "senha", target = "pass")
 
     UsuarioDTO usuarioParaUsuarioDTO(Usuario usuario);
