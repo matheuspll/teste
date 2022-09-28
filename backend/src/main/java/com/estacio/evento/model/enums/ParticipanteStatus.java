@@ -3,7 +3,8 @@ package com.estacio.evento.model.enums;
 public enum ParticipanteStatus {
 
     CADASTRADO(1),
-    CONFIRMADO(2);
+    CONFIRMADO(2),
+    AUSENTE(3);
 
     private final int code;
 
