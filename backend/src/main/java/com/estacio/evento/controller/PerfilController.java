@@ -1,7 +1,7 @@
 package com.estacio.evento.controller;
 
-import com.estacio.evento.model.Curso;
-import com.estacio.evento.service.CursoService;
+import com.estacio.evento.model.Perfil;
+import com.estacio.evento.service.PerfilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +18,22 @@ import java.util.Optional;
 public class PerfilController {
 
     @Autowired
-    private CursoService cursoService;
+    private PerfilService perfilService;
 
     @GetMapping
-    public ResponseEntity<List<Curso>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(cursoService.findAll());
+    public ResponseEntity<List<Perfil>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(perfilService.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
 
-        Optional<Curso> optionalServer = cursoService.findById(id);
-        if (!optionalServer.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não encontrado");
+        Optional<Perfil> optionalPerfil = perfilService.findById(id);
+        if (!optionalPerfil.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Perfil não encontrado");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(optionalServer.get());
+        return ResponseEntity.status(HttpStatus.OK).body(optionalPerfil.get());
     }
 
 }

@@ -25,18 +25,6 @@ public class Atividade implements Serializable {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToMany
-    @JoinTable(name = "tb_atividade_participante",
-            joinColumns = @JoinColumn(name = "atividade_id"),
-            inverseJoinColumns = @JoinColumn(name = "participante_id"))
-    private Set<Participante> participantes = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "tb_atividade_organizador",
-            joinColumns = @JoinColumn(name = "atividade_id"),
-            inverseJoinColumns = @JoinColumn(name = "organizador_id"))
-    private Set<Organizador> organizadores = new HashSet<>();
-
     public Long getId() {
         return id;
     }
@@ -67,14 +55,6 @@ public class Atividade implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-    }
-
-    public Set<Participante> getParticipantes() {
-        return participantes;
-    }
-
-    public Set<Organizador> getOrganizadores() {
-        return organizadores;
     }
 
     @Override

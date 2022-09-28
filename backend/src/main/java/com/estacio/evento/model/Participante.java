@@ -2,13 +2,10 @@ package com.estacio.evento.model;
 
 import com.estacio.evento.model.enums.ParticipanteStatus;
 import com.estacio.evento.model.enums.TipoParticipante;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "TB_PARTICIPANTE")
@@ -44,10 +41,6 @@ public class Participante implements Serializable {
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "participantes")
-    private Set<Atividade> atividades = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "perfil_id")
@@ -115,10 +108,6 @@ public class Participante implements Serializable {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
-    }
-
-    public Set<Atividade> getAtividades() {
-        return atividades;
     }
 
     public ParticipanteStatus getParticipanteStatus() {

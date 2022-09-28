@@ -16,9 +16,6 @@ INSERT INTO tb_participante (nome, cpf, email, senha, matricula, telefone, parti
 INSERT INTO tb_categoria (nome) VALUES ('Palestra');
 INSERT INTO tb_categoria (nome) VALUES ('Oficina');
 INSERT INTO tb_categoria (nome) VALUES ('Seminario');
-INSERT INTO tb_organizador (nome) VALUES ('Cleuton');
-INSERT INTO tb_organizador (nome) VALUES ('Priscila');
-INSERT INTO tb_organizador (nome) VALUES ('Breno')
 INSERT INTO tb_atividade (titulo, descricao, categoria_id) VALUES ('Inteligência Artificial', 'Estudo sobre como aplicar os comportamentos humanos em maquinas', 1L);
 INSERT INTO tb_atividade (titulo, descricao, categoria_id) VALUES ('Programação Funcional', 'Estudo sobre funções e imutabilidade', 1L);
 INSERT INTO tb_atividade (titulo, descricao, categoria_id) VALUES ('Python para WEB', 'Como construir aplicações utilizando Django', 2L);
@@ -28,17 +25,13 @@ INSERT INTO tb_periodo (inicio, fim, atividade_id) VALUES ('2022-05-05 19:00', '
 INSERT INTO tb_periodo (inicio, fim, atividade_id) VALUES ('2022-09-08 18:00', '2022-09-08 20:00', 3L);
 INSERT INTO tb_periodo (inicio, fim, atividade_id) VALUES ('2022-09-10 15:30', '2022-09-10 18:45', 4L);
 INSERT INTO tb_periodo (inicio, fim, atividade_id) VALUES ('2022-09-10 19:30', '2022-09-10 22:45', 4L);
-INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (1L, 1L);
-INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (1L, 2L);
-INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (1L, 4L);
-INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (4L, 1L);
-INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (2L, 2L);
-INSERT INTO tb_atividade_participante (atividade_id, participante_id) VALUES (3L, 3L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (1L, 1L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (1L, 2L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (2L, 3L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (3L, 3L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (4L, 1L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (4L, 2L);
-INSERT INTO tb_atividade_organizador (atividade_id, organizador_id) VALUES (4L, 3L);
-
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 1L, 1L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 1L, 2L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 1L, 4L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 4L, 1L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 2L, 2L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 3L, 3L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (1, 6L, 1L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (2, 7L, 4L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (2, 8L, 4L);
+INSERT INTO tb_participante_atividade (status_participacao, participante_id, atividade_id) VALUES (2, 8L, 2L);
