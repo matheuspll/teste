@@ -49,6 +49,10 @@ public class Participante implements Serializable {
     @ManyToMany(mappedBy = "participantes")
     private Set<Atividade> atividades = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "perfil_id")
+    private Perfil perfil;
+
     public Long getId() {
         return id;
     }
@@ -135,6 +139,14 @@ public class Participante implements Serializable {
         if (tipoParticipante != null) {
             this.tipoParticipante = tipoParticipante.getCode();
         }
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     @Override
