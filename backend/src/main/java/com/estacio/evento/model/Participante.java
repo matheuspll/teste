@@ -1,6 +1,7 @@
 package com.estacio.evento.model;
 
 import com.estacio.evento.model.enums.ParticipanteStatus;
+import com.estacio.evento.model.enums.TipoParticipante;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class Participante implements Serializable {
     @Column(nullable = false, length = 100)
     private String email;
 
+    @Column(nullable = false, length = 100)
+    private String senha;
+
     @Column(nullable = true, length = 15)
     private String telefone;
 
@@ -34,6 +38,8 @@ public class Participante implements Serializable {
     private Integer matricula;
 
     private Integer participanteStatus;
+
+    private Integer tipoParticipante;
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
@@ -65,6 +71,14 @@ public class Participante implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getTelefone() {
@@ -110,6 +124,16 @@ public class Participante implements Serializable {
     public void setParticipanteStatus(ParticipanteStatus participanteStatus) {
         if (participanteStatus != null) {
             this.participanteStatus = participanteStatus.getCode();
+        }
+    }
+
+    public TipoParticipante getTipoParticipante() {
+        return TipoParticipante.valueOf(tipoParticipante);
+    }
+
+    public void setTipoParticipante(TipoParticipante tipoParticipante) {
+        if (tipoParticipante != null) {
+            this.tipoParticipante = tipoParticipante.getCode();
         }
     }
 
