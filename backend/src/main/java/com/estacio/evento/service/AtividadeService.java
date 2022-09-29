@@ -28,4 +28,9 @@ public class AtividadeService {
     public Atividade save(Atividade atividade) {
         return atividadeRepository.save(atividade);
     }
+
+    @Transactional
+    public void delete(Atividade atividade) {
+        atividadeRepository.delete(atividade);
+    }
 }

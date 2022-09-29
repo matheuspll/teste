@@ -7,6 +7,7 @@ import com.estacio.evento.repository.ParticipanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,10 @@ public class ParticipanteService {
 
     public Optional<Participante> findById(Long id) {
         return participanteRepository.findById(id);
+    }
+
+    @Transactional
+    public void delete(Participante participante) {
+        participanteRepository.delete(participante);
     }
 }
