@@ -28,7 +28,7 @@ public class ParticipanteService {
         }
         return true;
     }
-
+    @Transactional
     public Participante salvarParticipante(Participante participante) {
         // garantindo que não exite um outro participante já cadastrado
         validarEmail(participante.getEmail());
