@@ -34,14 +34,14 @@ public class ParticipanteController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(participanteOptional.get());
     }
-    @PostMapping
-    public ResponseEntity<Object> save(@RequestBody Participante participante) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(participanteService.salvarParticipante(participante));
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-    }
+//    @PostMapping
+//    public ResponseEntity<Object> save(@RequestBody Participante participante) {
+//        try {
+//            return ResponseEntity.status(HttpStatus.CREATED).body(participanteService.salvarParticipante(participante));
+//        } catch (RegraNegocioException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+//        }
+//    }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deletarParticipante(@PathVariable(value = "id") Long id) {

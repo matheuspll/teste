@@ -31,6 +31,11 @@ public class AtividadeController {
         return ResponseEntity.status(HttpStatus.OK).body(atividadeOptional.get());
     }
 
+    @PostMapping
+    public ResponseEntity<Object> save(@RequestBody Atividade atividade) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(atividadeService.save(atividade));
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deletarAtividade(@PathVariable(value = "id") Long id) {
         Optional<Atividade> atividadeOptional = atividadeService.findById(id);

@@ -3,7 +3,6 @@ package com.estacio.evento.model.pk;
 import com.estacio.evento.model.Atividade;
 import com.estacio.evento.model.Participante;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
