@@ -2,13 +2,19 @@ package com.estacio.evento.model;
 
 import com.estacio.evento.model.enums.ParticipanteStatus;
 import com.estacio.evento.model.enums.TipoParticipante;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "TB_PARTICIPANTE")
+@NoArgsConstructor
 public class Participante implements Serializable {
     private static final long serialVersionUID = 1L;
 

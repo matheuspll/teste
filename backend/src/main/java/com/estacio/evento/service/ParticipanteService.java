@@ -2,7 +2,9 @@ package com.estacio.evento.service;
 
 import com.estacio.evento.exception.ErroAutenticacao;
 import com.estacio.evento.exception.RegraNegocioException;
+import com.estacio.evento.model.Curso;
 import com.estacio.evento.model.Participante;
+import com.estacio.evento.model.Perfil;
 import com.estacio.evento.repository.ParticipanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,12 @@ public class ParticipanteService {
 
     @Autowired
     private ParticipanteRepository participanteRepository;
+
+    @Autowired
+    private CursoService cursoService;
+
+    @Autowired
+    private PerfilService perfilService;
 
     public boolean autenticar(String email, String senha) {
         Optional<Participante> participante = participanteRepository.findByEmail(email);
@@ -32,6 +40,17 @@ public class ParticipanteService {
     public Participante salvarParticipante(Participante participante) {
         // garantindo que não exite um outro participante já cadastrado
         validarEmail(participante.getEmail());
+
+        Optional<Curso> cursoOptional = cursoService.findById(participante.getCurso().getId());
+        Optional<Perfil> perfilOptional = perfilService.findById(participante.getPerfil().getId());
+        if (!cursoOptional.isPresent()) {
+            throw new RegraNegocioException("Esse curso não existe");
+        }
+        if (!perfilOptional.isPresent()) {
+            throw new RegraNegocioException("Esse perfil não existe");
+        }
+        participante.setCurso(cursoOptional.get());
+        participante.setPerfil(perfilOptional.get());
         return participanteRepository.save(participante);
     }
 
