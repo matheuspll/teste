@@ -1,5 +1,6 @@
 package com.estacio.evento.controller;
 
+import com.estacio.evento.exception.RegraNegocioException;
 import com.estacio.evento.model.Atividade;
 import com.estacio.evento.service.AtividadeService;
 import org.springframework.beans.factory.annotation.Autowired;

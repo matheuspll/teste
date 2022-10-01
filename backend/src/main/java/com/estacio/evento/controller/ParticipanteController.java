@@ -23,8 +23,6 @@ public class ParticipanteController {
         return ResponseEntity.status(HttpStatus.OK).body(participanteService.findAll());
     }
 
-    @PostMapping
-
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
         Optional<Participante> participanteOptional = participanteService.findById(id);
