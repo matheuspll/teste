@@ -38,8 +38,14 @@ public class ParticipanteService {
     }
     @Transactional
     public Participante salvarParticipante(Participante participante) {
-        // garantindo que não exite um outro participante já cadastrado
+        // garantindo que não exite um outro participante já cadastrado com as mesmos atributos
         validarEmail(participante.getEmail());
+        validarCpf(participante.getCpf());
+        validarMatricula(participante.getMatricula());
+
+        if (participante.getTelefone() != null) {
+            validarTelefone(participante.getTelefone());
+        }
 
         Optional<Curso> cursoOptional = cursoService.findById(participante.getCurso().getId());
         Optional<Perfil> perfilOptional = perfilService.findById(participante.getPerfil().getId());
@@ -60,6 +66,28 @@ public class ParticipanteService {
             throw new RegraNegocioException("Já existe um participante cadastrado com este email");
         }
     }
+
+    public void validarCpf(String cpf) {
+        boolean existe = participanteRepository.existsByCpf(cpf);
+        if (existe) {
+            throw new RegraNegocioException("Já existe um participante cadastrado com este cpf");
+        }
+    }
+
+    public void validarTelefone(String telefone) {
+        boolean existe = participanteRepository.existsByTelefone(telefone);
+        if (existe) {
+            throw new RegraNegocioException("Já existe um participante cadastrado com este telefone");
+        }
+    }
+
+    public void validarMatricula(Integer matricula) {
+        boolean existe = participanteRepository.existsByMatricula(matricula);
+        if (existe) {
+            throw new RegraNegocioException("Já existe um participante cadastrado com esta matricula");
+        }
+    }
+
 
     public List<Participante> findAll() {
         return participanteRepository.findAll();
