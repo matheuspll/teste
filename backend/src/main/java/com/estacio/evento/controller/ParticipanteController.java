@@ -45,7 +45,7 @@ public class ParticipanteController {
                 return ResponseEntity.status(HttpStatus.OK).body("Participante autenticado com sucesso!");
             }
         } catch (RegraNegocioException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
         return ResponseEntity.badRequest().build(); // retorna apenas um badrequest sem msg
     }
