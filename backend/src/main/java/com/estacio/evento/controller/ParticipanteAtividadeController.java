@@ -38,7 +38,7 @@ public class ParticipanteAtividadeController {
 
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody ParticipanteAtividade participante) {
-        return ResponseEntity.status(HttpStatus.OK).body(participanteAtividadeService.save(participante));
+        return ResponseEntity.status(HttpStatus.CREATED).body(participanteAtividadeService.save(participante));
     }
 //
 //    @DeleteMapping(value = "/{id}")

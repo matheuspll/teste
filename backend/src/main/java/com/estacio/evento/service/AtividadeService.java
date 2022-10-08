@@ -23,8 +23,10 @@ public class AtividadeService {
         return atividadeRepository.findAll();
     }
 
-    public Optional<Atividade> findById(Long id) {
-        return atividadeRepository.findById(id);
+    public Atividade findById(Long id) {
+        return atividadeRepository.findById(id).orElseThrow(
+                () -> new RegraNegocioException("Esta atividade não existe")
+        );
     }
 
     @Transactional

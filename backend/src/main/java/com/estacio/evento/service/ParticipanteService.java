@@ -36,28 +36,35 @@ public class ParticipanteService {
         }
         return true;
     }
+
     @Transactional
     public Participante salvarParticipante(Participante participante) {
         // garantindo que não exite um outro participante já cadastrado com as mesmos atributos
+        validar(participante);
+
+        Curso curso = cursoService.findById(participante.getCurso().getId());
+        Perfil perfil = perfilService.findById(participante.getPerfil().getId());
+
+        participante.setCurso(curso);
+        participante.setPerfil(perfil);
+        return participanteRepository.save(participante);
+    }
+
+    public void validar(Participante participante) {
         validarEmail(participante.getEmail());
-        validarCpf(participante.getCpf());
-        validarMatricula(participante.getMatricula());
+        if (participanteRepository.existsByCpf(participante.getCpf())) {
+            throw new RegraNegocioException("Já existe um participante cadastrado com este cpf");
+        }
+
+        if (participanteRepository.existsByTelefone(participante.getTelefone())) {
+            throw new RegraNegocioException("Já existe um participante cadastrado com este telefone");
+        }
 
         if (participante.getTelefone() != null) {
-            validarTelefone(participante.getTelefone());
+            if (participanteRepository.existsByMatricula(participante.getMatricula())) {
+                throw new RegraNegocioException("Já existe um participante cadastrado com esta matricula");
+            }
         }
-
-        Optional<Curso> cursoOptional = cursoService.findById(participante.getCurso().getId());
-        Optional<Perfil> perfilOptional = perfilService.findById(participante.getPerfil().getId());
-        if (!cursoOptional.isPresent()) {
-            throw new RegraNegocioException("Esse curso não existe");
-        }
-        if (!perfilOptional.isPresent()) {
-            throw new RegraNegocioException("Esse perfil não existe");
-        }
-        participante.setCurso(cursoOptional.get());
-        participante.setPerfil(perfilOptional.get());
-        return participanteRepository.save(participante);
     }
 
     public void validarEmail(String email) {
@@ -67,34 +74,14 @@ public class ParticipanteService {
         }
     }
 
-    public void validarCpf(String cpf) {
-        boolean existe = participanteRepository.existsByCpf(cpf);
-        if (existe) {
-            throw new RegraNegocioException("Já existe um participante cadastrado com este cpf");
-        }
-    }
-
-    public void validarTelefone(String telefone) {
-        boolean existe = participanteRepository.existsByTelefone(telefone);
-        if (existe) {
-            throw new RegraNegocioException("Já existe um participante cadastrado com este telefone");
-        }
-    }
-
-    public void validarMatricula(Integer matricula) {
-        boolean existe = participanteRepository.existsByMatricula(matricula);
-        if (existe) {
-            throw new RegraNegocioException("Já existe um participante cadastrado com esta matricula");
-        }
-    }
-
-
     public List<Participante> findAll() {
         return participanteRepository.findAll();
     }
 
-    public Optional<Participante> findById(Long id) {
-        return participanteRepository.findById(id);
+    public Participante findById(Long id) {
+        return participanteRepository.findById(id).orElseThrow(
+                () -> new RegraNegocioException("Este participante não existe")
+        );
     }
 
     @Transactional

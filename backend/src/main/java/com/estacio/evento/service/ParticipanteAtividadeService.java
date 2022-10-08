@@ -1,5 +1,8 @@
 package com.estacio.evento.service;
 
+import com.estacio.evento.exception.RegraNegocioException;
+import com.estacio.evento.model.Atividade;
+import com.estacio.evento.model.Participante;
 import com.estacio.evento.model.ParticipanteAtividade;
 import com.estacio.evento.repository.ParticipanteAtividadeRepository;
 import org.springframework.stereotype.Service;
@@ -11,15 +14,24 @@ import java.util.List;
 public class ParticipanteAtividadeService {
 
     private final ParticipanteAtividadeRepository repository;
-    
+    private final ParticipanteService participanteService;
+    private final AtividadeService atividadeService;
 
     // não há necessidade de autowired, pois o @Service já torna um bean gerenciado
-    public ParticipanteAtividadeService(ParticipanteAtividadeRepository repository) {
+    public ParticipanteAtividadeService(ParticipanteAtividadeRepository repository, ParticipanteService participanteService, AtividadeService atividadeService) {
         this.repository = repository;
+        this.participanteService = participanteService;
+        this.atividadeService = atividadeService;
     }
 
     @Transactional
     public ParticipanteAtividade save(ParticipanteAtividade participanteAtividade) {
+
+        Participante participante = participanteService.findById(participanteAtividade.getParticipante().getId());
+        Atividade atividade = atividadeService.findById(participanteAtividade.getAtividade().getId());
+
+        participanteAtividade.setParticipante(participante);
+        participanteAtividade.setAtividade(atividade);
         return repository.save(participanteAtividade);
     }
 

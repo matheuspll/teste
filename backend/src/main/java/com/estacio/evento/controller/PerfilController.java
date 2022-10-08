@@ -27,13 +27,7 @@ public class PerfilController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
-
-        Optional<Perfil> optionalPerfil = perfilService.findById(id);
-        if (!optionalPerfil.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Perfil não encontrado");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(optionalPerfil.get());
+        return ResponseEntity.ok().body(perfilService.findById(id));
     }
 
 }

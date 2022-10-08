@@ -1,5 +1,6 @@
 package com.estacio.evento.service;
 
+import com.estacio.evento.exception.RegraNegocioException;
 import com.estacio.evento.model.Curso;
 import com.estacio.evento.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,12 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
-    public Optional<Curso> findById(Long id) {
-        return cursoRepository.findById(id);
+    public Curso findById(Long id) {
+        return cursoRepository.findById(id).orElseThrow(
+                () -> {
+                    throw new RegraNegocioException("Este curso não existe");
+                }
+        );
     }
 
     @Transactional

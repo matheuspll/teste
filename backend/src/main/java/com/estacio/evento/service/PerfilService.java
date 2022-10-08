@@ -1,5 +1,6 @@
 package com.estacio.evento.service;
 
+import com.estacio.evento.exception.RegraNegocioException;
 import com.estacio.evento.model.Curso;
 import com.estacio.evento.model.Perfil;
 import com.estacio.evento.repository.CursoRepository;
@@ -21,8 +22,9 @@ public class PerfilService {
         return perfilRepository.findAll();
     }
 
-    public Optional<Perfil> findById(Long id) {
-        return perfilRepository.findById(id);
+    public Perfil findById(Long id) {
+        Optional<Perfil> perfilOptional = perfilRepository.findById(id);
+        return perfilOptional.orElseThrow(() -> new RegraNegocioException("Este perfil não existe"));
     }
 
     @Transactional

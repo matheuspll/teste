@@ -26,12 +26,7 @@ public class ParticipanteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
-        Optional<Participante> participanteOptional = participanteService.findById(id);
-
-        if (!participanteOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Participante não foi encontrado");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(participanteOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(participanteService.findById(id));
     }
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody Participante participante) {
@@ -52,11 +47,8 @@ public class ParticipanteController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deletarParticipante(@PathVariable(value = "id") Long id) {
-        Optional<Participante> participanteOptional = participanteService.findById(id);
-        if (!participanteOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Participante não foi encontrada");
-        }
-        participanteService.delete(participanteOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Participante deletada com sucesso!");
+        Participante participante = participanteService.findById(id);
+        participanteService.delete(participante);
+        return ResponseEntity.status(HttpStatus.OK).body("Participante deletado com sucesso!");
     }
 }

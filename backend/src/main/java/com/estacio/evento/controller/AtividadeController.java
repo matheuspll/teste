@@ -25,11 +25,7 @@ public class AtividadeController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
-        Optional<Atividade> atividadeOptional = atividadeService.findById(id);
-        if (!atividadeOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Atividade não encontrada");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(atividadeOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(atividadeService.findById(id));
     }
 
     @PostMapping
@@ -39,11 +35,8 @@ public class AtividadeController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deletarAtividade(@PathVariable(value = "id") Long id) {
-        Optional<Atividade> atividadeOptional = atividadeService.findById(id);
-        if (!atividadeOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Atividade não encontrada");
-        }
-        atividadeService.delete(atividadeOptional.get());
+        Atividade atividade = atividadeService.findById(id);
+        atividadeService.delete(atividade);
         return ResponseEntity.status(HttpStatus.OK).body("Atividade deletada com sucesso");
     }
 }
