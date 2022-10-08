@@ -13,6 +13,7 @@ public interface ParticipanteAtividadeRepository extends JpaRepository<Participa
 //    List<Book> findByIdAuthor(String author);
 
     List<ParticipanteAtividade> findByIdParticipanteId(Long id);
+    void deleteByIdParticipanteId(Long id);
 
 //    void deleteByEmployeePK_FirstName(String firstName);
 }

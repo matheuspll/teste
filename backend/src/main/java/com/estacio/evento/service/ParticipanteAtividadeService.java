@@ -4,6 +4,7 @@ import com.estacio.evento.exception.RegraNegocioException;
 import com.estacio.evento.model.Atividade;
 import com.estacio.evento.model.Participante;
 import com.estacio.evento.model.ParticipanteAtividade;
+import com.estacio.evento.model.enums.StatusParticipacao;
 import com.estacio.evento.repository.ParticipanteAtividadeRepository;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class ParticipanteAtividadeService {
 
         participanteAtividade.setParticipante(participante);
         participanteAtividade.setAtividade(atividade);
+        participanteAtividade.setStatusParticipacao(StatusParticipacao.INSCRITO);
         return repository.save(participanteAtividade);
     }
 
@@ -48,7 +50,13 @@ public class ParticipanteAtividadeService {
 //    }
 
     @Transactional
-    public void delete(ParticipanteAtividade participanteAtividade) {
+    public void deletarParticipante(Participante participante) {
+        repository.deleteByIdParticipanteId(participante.getId());
+    }
+
+    @Transactional
+    public void deletarParticipacao(ParticipanteAtividade participanteAtividade) {
         repository.delete(participanteAtividade);
     }
+
 }
